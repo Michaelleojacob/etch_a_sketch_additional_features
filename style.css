@@ -1,6 +1,9 @@
 * {
 	background: black;
 	font-family: sans-serif;
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
 }
 
 .gridContainer {
@@ -57,4 +60,25 @@
 
 #reset:focus {
 	outline: none;
+}
+
+#slider {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 50%;
+}
+
+.displaySliderValue {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }

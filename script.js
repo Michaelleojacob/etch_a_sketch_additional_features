@@ -1,26 +1,12 @@
-const gridContainer = document.querySelector('.gridContainer');
-let griditem;
-const resetbtn = document.querySelector('#reset');
-let gridItemArray = [];
+let slider = document.querySelector('#slider');
+let displaySliderValue = document.querySelector('.displaySliderValue');
+let userInputFromSlider;
 
-for(i=0; i<256; i++){
-    const griditem = document.createElement(`div`);
-    griditem.classList.add('griditem');
-    gridItemArray.push(griditem);
-    gridItemArray.forEach(item => {
-        gridContainer.appendChild(item)
-    })
-    
-    
-    // !two addEvents. One toggles, the other is a permanent change
-    // griditem.addEventListener('mouseover', function(e){
-    //     this.classList.toggle('toggleMouseOver')
-    // });
-    griditem.addEventListener('mouseover', function(e){
-        this.classList.add('permMouseOver')
+slider.oninput = function(){
+    displaySliderValue.textContent = this.value;
+    userInputFromSlider = parseInt(this.value);
+    return userInputFromSlider;
+};
 
-        resetbtn.addEventListener('click', function (e){
-            griditem.classList.remove('permMouseOver');
-        })
-    });
-}
+displaySliderValue.textContent = parseInt(slider.value);
+
