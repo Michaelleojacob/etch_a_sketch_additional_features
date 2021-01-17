@@ -10,7 +10,7 @@
 
     <div class="gridContainer" id="gridContainer"></div>
     
-    <input id="slider" type="range" min=4 max=100 value="16">
+    <input id="slider" type="range" min=4 max=100 value="16" oninput="onInput(this.value)" onchange="onChange(this.value)">
     <div class="displaySliderValue"></div>
     
     <button id="reset">Reset</button>

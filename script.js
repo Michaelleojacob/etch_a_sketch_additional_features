@@ -1,23 +1,38 @@
 let slider = document.querySelector('#slider');
 let displaySliderValue = document.querySelector('.displaySliderValue');
-let userInputFromSlider;
+let sliderValue;
 let gridContainer = document.querySelector('.gridContainer');
 let gridItemArray = [];
+let lastNum = 16;
 
 slider.oninput = function(){
     displaySliderValue.textContent = this.value;
-    userInputFromSlider = parseInt(this.value);
+    sliderValue = parseInt(this.value);
     makeGrid();
-    return userInputFromSlider;
+
+    console.log(this.value);
+
+    if(lastNum < this.value){
+        console.log('increasing');
+    } else {
+        console.log('decreasing');
+    };
+    lastNum = this.value;
+    console.log(`oninput: ${this.value}`);
+
+    return sliderValue;
 };
 
+slider.onchange = function () {
+    console.log(`onchange: ${this.value}`);
+}
 
 
 
 
 function makeGrid(){
-    document.getElementById('gridContainer').style.setProperty(`grid-template-columns`, `repeat(${userInputFromSlider}, 1fr)`);
-    document.getElementById('gridContainer').style.setProperty(`grid-template-rows`, `repeat(${userInputFromSlider}, 1fr)`);
+    document.getElementById('gridContainer').style.setProperty(`grid-template-columns`, `repeat(${sliderValue}, 1fr)`);
+    document.getElementById('gridContainer').style.setProperty(`grid-template-rows`, `repeat(${sliderValue}, 1fr)`);
 }
 
 for(i=0; i<256; i++){
