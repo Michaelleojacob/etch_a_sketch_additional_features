@@ -1,9 +1,9 @@
 let slider = document.querySelector('#slider');
 let displaySliderValue = document.querySelector('.displaySliderValue');
-let sliderValue = 16;
+let sliderValue = 3;
 let gridContainer = document.querySelector('.gridContainer');
 let gridItemArray = [];
-let lastNum = 16;
+let lastNum = 3;
 let lastNumSquared = lastNum * lastNum
 
 function makeGrid(){
@@ -17,9 +17,10 @@ for(i=0; i<lastNumSquared; i++){
     let griditem = document.createElement(`div`);
     griditem.classList.add('griditem');
     gridItemArray.push(griditem);
-    gridItemArray.forEach(item => {
-        gridContainer.appendChild(item)
-    });
+    gridContainer.appendChild(griditem);
+    // gridItemArray.forEach(item => {
+    //     gridContainer.appendChild(item)
+    // });
 };
 
 
@@ -29,6 +30,7 @@ slider.oninput = function(){
 
     if(lastNum < sliderValue){
         console.log('increasing');
+        gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
 
@@ -43,15 +45,14 @@ slider.oninput = function(){
         
     } else if(lastNum > sliderValue) {
         console.log('decreasing');
+        gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
 
         for(let i = lastNumSquared; i>newNumSquared; i--){
             let griditem = document.querySelector('div');
             gridItemArray.pop(griditem);
-            // gridItemArray.forEach(item=>{            //not sure if this is doing anything.
-            //     gridContainer.appendChild(item);        //commenting out for now.
-            // });     
+            gridContainer.removeChild(griditem);
         };
         }
         
@@ -66,13 +67,6 @@ slider.oninput = function(){
 //?this is a meteor example. change only takes place once the user lets go of the mouse drag/click.
 // slider.onchange = function () {
 //     console.log(`onchange: ${this.value}`);
-// }
-
-
-
-// function makeGrid(){
-//     document.getElementById('gridContainer').style.setProperty(`grid-template-columns`, `repeat(${sliderValue}, 1fr)`);
-//     document.getElementById('gridContainer').style.setProperty(`grid-template-rows`, `repeat(${sliderValue}, 1fr)`);
 // }
 
 
