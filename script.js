@@ -1,9 +1,9 @@
 let slider = document.querySelector('#slider');
 let displaySliderValue = document.querySelector('.displaySliderValue');
-let sliderValue = 3;
+let sliderValue = 16;
 let gridContainer = document.querySelector('.gridContainer');
 let gridItemArray = [];
-let lastNum = 3;
+let lastNum = 16;
 let lastNumSquared = lastNum * lastNum
 
 function makeGrid(){
@@ -12,16 +12,13 @@ function makeGrid(){
 }
 
 for(i=0; i<lastNumSquared; i++){
-    sliderValue = parseInt(this.value);
+    displaySliderValue.textContent = sliderValue;
     makeGrid();
     let griditem = document.createElement(`div`);
     griditem.classList.add('griditem');
     gridItemArray.push(griditem);
     gridContainer.appendChild(griditem);
-    // gridItemArray.forEach(item => {
-    //     gridContainer.appendChild(item)
-    // });
-};
+    };
 
 
 slider.oninput = function(){
@@ -29,7 +26,6 @@ slider.oninput = function(){
     displaySliderValue.textContent = sliderValue;
 
     if(lastNum < sliderValue){
-        console.log('increasing');
         gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
@@ -38,13 +34,10 @@ slider.oninput = function(){
             let griditem = document.createElement('div');
             griditem.classList.add('griditem');
             gridItemArray.push(griditem);
-            gridItemArray.forEach(item => {
-                gridContainer.appendChild(item);
-            });
+            gridContainer.appendChild(griditem);
         };
         
     } else if(lastNum > sliderValue) {
-        console.log('decreasing');
         gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
@@ -56,10 +49,9 @@ slider.oninput = function(){
         };
         }
         
-    console.log(sliderValue);
+        makeGrid(); //might need to be moved / placement matters.
     lastNum = sliderValue;
     
-    makeGrid(); //might need to be moved / placement matters.
 
     return sliderValue;
 };
