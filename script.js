@@ -6,11 +6,23 @@ let gridItemArray = [];
 let lastNum = 16;
 let lastNumSquared = lastNum * lastNum
 
+
+//dynamically creating the css grid using js variables.
 function makeGrid(){
     document.getElementById('gridContainer').style.setProperty(`grid-template-columns`, `repeat(${sliderValue}, 1fr)`);
     document.getElementById('gridContainer').style.setProperty(`grid-template-rows`, `repeat(${sliderValue}, 1fr)`);
 }
 
+//reset button
+const resetbtn = document.querySelector('#reset');
+resetbtn.addEventListener('click', function(){
+    griditem = document.querySelectorAll('.griditem');
+    griditem.forEach(item => {
+        item.classList.remove('permMouseOver');
+    })
+})
+
+//default layout, on page refresh
 for(i=0; i<lastNumSquared; i++){
     displaySliderValue.textContent = sliderValue;
     makeGrid();
@@ -18,49 +30,60 @@ for(i=0; i<lastNumSquared; i++){
     griditem.classList.add('griditem');
     gridItemArray.push(griditem);
     gridContainer.appendChild(griditem);
-    };
+    griditem.addEventListener('mouseover', function(){
+        griditem.classList.add('permMouseOver');
+    });
+};
 
+//!to change from meteor to scaled just change onchange to oninput
+//? slider.oninput
+//? vs
+//? slider.onchange
 
-slider.oninput = function(){
+// the actual logic for the entire slider.
+slider.onchange = function(){
     sliderValue = parseInt(this.value);
     displaySliderValue.textContent = sliderValue;
 
+    griditem = document.querySelectorAll('.griditem');
+    griditem.forEach(item => {
+        item.classList.remove('permMouseOver');
+    })
+    
     if(lastNum < sliderValue){
         gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
-
+        
         for(let i = lastNumSquared; i<newNumSquared; i++){
             let griditem = document.createElement('div');
             griditem.classList.add('griditem');
             gridItemArray.push(griditem);
             gridContainer.appendChild(griditem);
+            griditem.addEventListener('mouseover', function(){
+                griditem.classList.add('permMouseOver');
+            });
         };
         
     } else if(lastNum > sliderValue) {
         gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
-
+        
         for(let i = lastNumSquared; i>newNumSquared; i--){
             let griditem = document.querySelector('div');
             gridItemArray.pop(griditem);
             gridContainer.removeChild(griditem);
+            griditem.addEventListener('mouseover', function(){
+                griditem.classList.add('permMouseOver');
+            });
         };
         }
         
-        makeGrid(); //might need to be moved / placement matters.
+    makeGrid();
     lastNum = sliderValue;
-    
-
     return sliderValue;
 };
 
-//?this is a meteor example. change only takes place once the user lets go of the mouse drag/click.
-// slider.onchange = function () {
-//     console.log(`onchange: ${this.value}`);
-// }
 
-
-displaySliderValue.textContent = parseInt(slider.value);
-
+displaySliderValue.textContent = sliderValue;

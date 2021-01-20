@@ -16,7 +16,7 @@
 	width: 600px;
 	/* grid-template-columns: repeat(16, 1fr);
 	grid-template-rows: repeat(16, 1fr); */
-	gap: 2px;
+	gap: 0px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 10%;
