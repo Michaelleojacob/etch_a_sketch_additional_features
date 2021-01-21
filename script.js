@@ -4,8 +4,7 @@ let sliderValue = 16;
 let gridContainer = document.querySelector('.gridContainer');
 let gridItemArray = [];
 let lastNum = 16;
-let lastNumSquared = lastNum * lastNum
-
+let lastNumSquared = lastNum * lastNum;
 
 //dynamically creating the css grid using js variables.
 function makeGrid(){
@@ -19,8 +18,8 @@ resetbtn.addEventListener('click', function(){
     griditem = document.querySelectorAll('.griditem');
     griditem.forEach(item => {
         item.classList.remove('permMouseOver');
-    })
-})
+    });
+});
 
 //default layout, on page refresh
 for(i=0; i<lastNumSquared; i++){
@@ -65,7 +64,8 @@ slider.onchange = function(){
             });
         };
         
-    } else if(lastNum > sliderValue) {
+    }
+    if(lastNum > sliderValue) {
         gridItemArray = [];
         let lastNumSquared = lastNum * lastNum;
         let newNumSquared = sliderValue * sliderValue;
