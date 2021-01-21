@@ -38,6 +38,10 @@
 	background-color: purple;
 }
 
+.mouseOverRed {
+	background-color: darkred;
+}
+
 #reset {
 	display: flex;
 	align-content: center;

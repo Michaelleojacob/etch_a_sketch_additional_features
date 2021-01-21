@@ -5,6 +5,39 @@ let gridContainer = document.querySelector('.gridContainer');
 let gridItemArray = [];
 let lastNum = 16;
 let lastNumSquared = lastNum * lastNum;
+let userColorChoice;
+
+const blkbtn = document.querySelector('#black');
+const purple = document.querySelector('#purple');
+const rainbow = document.querySelector('#rainbow');
+
+function defaultColor(){
+    userColorChoice = 'permMouseOver';
+    return userColorChoice;
+}
+
+defaultColor();
+
+blkbtn.addEventListener('click', function(e){
+        userColorChoice = 'mouseOverRed';
+        console.log(userColorChoice);
+        return userColorChoice;
+    
+});
+
+purple.addEventListener('click', function(e){
+    userColorChoice = 'permMouseOver';
+    console.log(userColorChoice)
+    return userColorChoice;
+});
+
+rainbow.addEventListener('click', function(e){
+    console.log('rainbow was clicked');
+});
+
+function colorPicker (){
+    
+}
 
 //dynamically creating the css grid using js variables.
 function makeGrid(){
@@ -17,7 +50,7 @@ const resetbtn = document.querySelector('#reset');
 resetbtn.addEventListener('click', function(){
     griditem = document.querySelectorAll('.griditem');
     griditem.forEach(item => {
-        item.classList.remove('permMouseOver');
+        item.classList.remove('permMouseOver', 'mouseOverRed');
     });
 });
 
@@ -30,7 +63,7 @@ for(i=0; i<lastNumSquared; i++){
     gridItemArray.push(griditem);
     gridContainer.appendChild(griditem);
     griditem.addEventListener('mouseover', function(){
-        griditem.classList.add('permMouseOver');
+        griditem.classList.add(userColorChoice);
     });
 };
 
@@ -46,8 +79,8 @@ slider.onchange = function(){
 
     griditem = document.querySelectorAll('.griditem');
     griditem.forEach(item => {
-        item.classList.remove('permMouseOver');
-    })
+        item.classList.remove('permMouseOver', 'mouseOverRed');
+    });
     
     if(lastNum < sliderValue){
         gridItemArray = [];
@@ -60,7 +93,7 @@ slider.onchange = function(){
             gridItemArray.push(griditem);
             gridContainer.appendChild(griditem);
             griditem.addEventListener('mouseover', function(){
-                griditem.classList.add('permMouseOver');
+                griditem.classList.add(userColorChoice);
             });
         };
         
@@ -75,7 +108,7 @@ slider.onchange = function(){
             gridItemArray.pop(griditem);
             gridContainer.removeChild(griditem);
             griditem.addEventListener('mouseover', function(){
-                griditem.classList.add('permMouseOver');
+                griditem.classList.add(userColorChoice);
             });
         };
         }
@@ -84,6 +117,5 @@ slider.onchange = function(){
     lastNum = sliderValue;
     return sliderValue;
 };
-
 
 displaySliderValue.textContent = sliderValue;
