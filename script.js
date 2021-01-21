@@ -27,6 +27,11 @@ blkbtn.addEventListener('click', function(e){
 
 purple.addEventListener('click', function(e){
     userColorChoice = 'permMouseOver';
+    let mouseOverRed = document.querySelectorAll('.mouseOverRed');
+    mouseOverRed.forEach(item =>{
+        item.classList.add('permMouseOver');
+       item.classList.remove('mouseOverRed');
+    });
     console.log(userColorChoice)
     return userColorChoice;
 });
