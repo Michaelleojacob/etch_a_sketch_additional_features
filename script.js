@@ -7,42 +7,53 @@ let lastNum = 16;
 let lastNumSquared = lastNum * lastNum;
 let userColorChoice;
 
-const blkbtn = document.querySelector('#black');
-const purple = document.querySelector('#purple');
-const rainbow = document.querySelector('#rainbow');
-
+//sets default color
 function defaultColor(){
     userColorChoice = 'permMouseOver';
     return userColorChoice;
-}
-
+};
 defaultColor();
 
+//black button
+const blkbtn = document.querySelector('#black');
 blkbtn.addEventListener('click', function(e){
-        userColorChoice = 'mouseOverRed';
-        console.log(userColorChoice);
-        return userColorChoice;
+    userColorChoice = 'mouseOverBlack';
+    let permMouseOver = document.querySelectorAll('.permMouseOver');
+    permMouseOver.forEach(item =>{
+        item.classList.add('mouseOverBlack');
+        item.classList.remove('permMouseOver');
+    });
+    return userColorChoice;
     
 });
 
+//purple button
+const purple = document.querySelector('#purple');
 purple.addEventListener('click', function(e){
     userColorChoice = 'permMouseOver';
-    let mouseOverRed = document.querySelectorAll('.mouseOverRed');
-    mouseOverRed.forEach(item =>{
+    let mouseOverBlack = document.querySelectorAll('.mouseOverBlack');
+    mouseOverBlack.forEach(item =>{
         item.classList.add('permMouseOver');
-       item.classList.remove('mouseOverRed');
+        item.classList.remove('mouseOverBlack');
     });
-    console.log(userColorChoice)
     return userColorChoice;
 });
 
-rainbow.addEventListener('click', function(e){
-    console.log('rainbow was clicked');
+//eraser button
+const eraser = document.querySelector('#eraser');
+eraser.addEventListener('click', function(x){
+    userColorChoice = 'mouseOverEraser';
+    return userColorChoice
 });
 
-function colorPicker (){
-    
-}
+//? this is a test, an example for how I could possibly implement a rainbow style.
+// rainbow.addEventListener('click', function(e){
+//     console.log('rainbow was clicked');
+//     userColorChoice = 'rainbow';
+// });
+// function mouseOverRainbow (x) {
+//     x.target.style.background = "yellow";
+// }
 
 //dynamically creating the css grid using js variables.
 function makeGrid(){
@@ -55,7 +66,7 @@ const resetbtn = document.querySelector('#reset');
 resetbtn.addEventListener('click', function(){
     griditem = document.querySelectorAll('.griditem');
     griditem.forEach(item => {
-        item.classList.remove('permMouseOver', 'mouseOverRed');
+        item.classList.remove('permMouseOver', 'mouseOverBlack', 'mouseOverEraser');
     });
 });
 
@@ -67,8 +78,11 @@ for(i=0; i<lastNumSquared; i++){
     griditem.classList.add('griditem');
     gridItemArray.push(griditem);
     gridContainer.appendChild(griditem);
-    griditem.addEventListener('mouseover', function(){
+    griditem.addEventListener('mouseover', function(x){
+        griditem.classList.remove('permMouseOver', 'mouseOverBlack', 'mouseOverEraser');
         griditem.classList.add(userColorChoice);
+        // griditem.classList.add(mouseOverRainbow(griditem));
+        // x.target.style.background = "yellow";
     });
 };
 
@@ -81,10 +95,11 @@ for(i=0; i<lastNumSquared; i++){
 slider.onchange = function(){
     sliderValue = parseInt(this.value);
     displaySliderValue.textContent = sliderValue;
-
+    makeGrid();
+    
     griditem = document.querySelectorAll('.griditem');
     griditem.forEach(item => {
-        item.classList.remove('permMouseOver', 'mouseOverRed');
+        item.classList.remove('permMouseOver', 'mouseOverBlack');
     });
     
     if(lastNum < sliderValue){
@@ -98,6 +113,7 @@ slider.onchange = function(){
             gridItemArray.push(griditem);
             gridContainer.appendChild(griditem);
             griditem.addEventListener('mouseover', function(){
+                griditem.classList.remove('permMouseOver', 'mouseOverBlack', 'mouseOverEraser');
                 griditem.classList.add(userColorChoice);
             });
         };
@@ -113,12 +129,12 @@ slider.onchange = function(){
             gridItemArray.pop(griditem);
             gridContainer.removeChild(griditem);
             griditem.addEventListener('mouseover', function(){
+                griditem.classList.remove('permMouseOver', 'mouseOverBlack', 'mouseOverEraser');
                 griditem.classList.add(userColorChoice);
             });
         };
         }
         
-    makeGrid();
     lastNum = sliderValue;
     return sliderValue;
 };

@@ -1,3 +1,6 @@
+//! this file is the most basic, least complicated 
+//! working grid. I keep it around as reference material.
+
 const gridContainer = document.querySelector('.gridContainer');
 let griditem;
 const resetbtn = document.querySelector('#reset');
