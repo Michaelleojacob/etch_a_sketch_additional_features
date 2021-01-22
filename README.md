@@ -1,6 +1,12 @@
-# EtchASketch version 2.
+# EtchASketch (version 2)
 
-# Live website: https://michaelleojacob.github.io/etch_a_sketch_additional_features/
+# live applications:
+
+## - version one: https://michaelleojacob.github.io/etch_a_sketch/
+
+## - version two: https://michaelleojacob.github.io/etch_a_sketch_additional_features/
+
+## - version three: https://michaelleojacob.github.io/etchv3/
 
 ## This version features a dynamic grid table that is created when the user gives input through the slider.
 
@@ -39,3 +45,7 @@ The next version will most likely set the style property to a color. Thus removi
 I am unsure if I want to invest the time into the next version to allow this more dynamic way of adding style to each grid item that is moused over to change the colors of current moused over items on a color switch.
 
 I think the goal will be to just hit the reset button each time the user wants to change colors in the next version.
+
+# michaelleojacob@gmail.com
+
+# https://www.linkedin.com/public-profile/in/michael-leo-jacob
